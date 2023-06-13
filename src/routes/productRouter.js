@@ -4,44 +4,44 @@ const productSchema = require("../models/product.js");
 const router = express.Router();
 
 //create product
-router.post("/product", (req, res)=> {
-    const productCreate = productSchema(req.body);
+router.post("/product", async (req, res)=> {
+    const productCreate = await productSchema(req.body);
     productCreate.save()
     .then((data) => res.json(data))
     .catch((error)=> res.json({message: error}));
 });
 
 //get all product
-router.get("/product", (req, res)=> {
-    productSchema
+router.get("/product", async (req, res)=> {
+    await  productSchema
     .find()
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}));
 });
 
 //get a user
-router.get("/product/:id", (req, res)=> {
+router.get("/product/:id", async (req, res)=> {
     const {id} = req.params;
-    productSchema
+    await productSchema
     .findById(id)
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}));
 });
 
 //delete user
-router.delete("/product/:id", (req, res)=> {
+router.delete("/product/:id", async (req, res)=> {
     const {id} = req.params;
-    productSchema
+    await productSchema
     .deleteOne({_id: id})
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}));
 });
 
 //update user
-router.put("/product/:id", (req, res)=> {
+router.put("/product/:id", async (req, res)=> {
     const {id} = req.params;
     const {name, price, active, description, fecha, _id, img, platform, quantity, tipo, version} = req.body;
-    productSchema
+    await productSchema
     .updateOne({_id: id}, {$set:{name, price, active, description, fecha, _id, img, platform, quantity, tipo, version}})
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}));

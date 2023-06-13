@@ -34,6 +34,9 @@ const productSchema = mongoose.Schema({
     version:{
         type: String
     },
+    banner:{
+        type: String
+    },
 
 },
 {
