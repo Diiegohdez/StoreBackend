@@ -40,9 +40,9 @@ router.delete("/product/:id", async (req, res)=> {
 //update user
 router.put("/product/:id", async (req, res)=> {
     const {id} = req.params;
-    const {name, price, active, description, fecha, _id, img, platform, quantity, tipo, version} = req.body;
+    const {name, price, active, description, fecha, _id, img, platform, quantity, tipo, version, banner} = req.body;
     await productSchema
-    .updateOne({_id: id}, {$set:{name, price, active, description, fecha, _id, img, platform, quantity, tipo, version}})
+    .updateOne({_id: id}, {$set:{name, price, active, description, fecha, _id, img, platform, quantity, tipo, version, banner}})
     .then((data) => res.json(data))
     .catch((error) => res.json({message: error}));
 });
